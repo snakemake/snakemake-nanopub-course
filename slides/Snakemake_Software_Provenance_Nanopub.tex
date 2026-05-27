@@ -1,0 +1,76 @@
+%-------------------------------------------------------%
+%       Snakemake-Intro for HPC Users                   %
+%-------------------------------------------------------%
+
+
+% this code will compile the document as handout with
+% $ pdflatex -synctex=1 -interaction=nonstopmode "\def\ishandout{1} \input{Snakemake_HPC_Users.tex}"
+\ifdefined\ishandout
+\PassOptionsToClass{handout}{beamer}
+\fi
+
+\documentclass[english,xcolor=pdftex,dvipsnames,aspectratio=<+++ if course.aspectratio is defined +++><++course.aspectratio++><+++else+++>43<+++endif+++>]{beamer} 
+
+% to typeset only a few slide sets, set them here during development
+%\includeonly{Why_Workflows}
+
+\input{preamble}
+
+\title[<++course.shorttitle++>]{<+++ if course.title is defined +++><++course.tittle++><+++else+++>An Introduction to Nanopub Reports with \Snakemake<+++endif+++>} 
+
+\subtitle{<+++ if course.subtitle is defined +++><++course.subtitle++><+++else+++>Software Provenance with Nanopubs<+++endif+++> - <++course.edition++>\newline by <++instructor.name++>} 
+
+\ifdefined\ishandout
+\AddToHook{shipout/foreground}{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[red,rotate=10,scale=1,opacity=0.7] at (current page.center) {\footnotesize Handout from Snakemake Report generation with the Snakemake Nanopub Plugin <++instructor.name++>}; 
+	\end{tikzpicture}
+}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% attempts a better type setting for hboxes (might result in less overful warnings)
+\sloppy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}[plain] % plain erzeugt Titelseite ohne Kopf- und Fußzeile
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{Snakemake_Intro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{Nanopub_Report_Teaser}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{Nanopub_Registration}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\include{Registration_HandsOn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}<handout:0> 
+	\frametitle{The End}
+	\begin{center}
+		\begin{figure}
+			\centering
+			
+			\includegraphics[width=0.7\textwidth]{logos/the_end.jpg}
+		\end{figure}
+		Thank you for your attention!
+	\end{center}
+\end{frame}
+
+\begin{frame}<beamer:0> 
+	\frametitle{End of the Talk}
+
+\end{frame}
+
+\end{document}
+
