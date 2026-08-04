@@ -1,0 +1,108 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Snakemake Nanopub Reports}
+{   
+    \usebackgroundtemplate{
+        \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=\paperwidth]{reports/nanopub_workflow_report.png}\hfil}\vfil}
+    }
+    \frame{
+        \frametitle{\Snakemake Reports with Nanopubs}
+        \begin{mdframed}[tikzsetting={draw=white,fill=white,fill opacity=0.8,
+                line width=0pt},backgroundcolor=none,leftmargin=0,
+            rightmargin=150,innertopmargin=4pt,roundcorner=10pt]
+            \tableofcontents[currentsection,sections={1-4},hideothersubsections]
+        \end{mdframed}
+        \vfill\vspace{16mm}\hfil \hfill{\tiny Screenshot -- upper section of a registered workflow nanopub}
+    }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{\HandsOn{How to register your Workflow}}
+    We created a \lhref{https://w3id.org/np/RAOT7z3RA0XYlHIikne8rfUUYZrtHyrzXBD1HpI_GvcRk}{registration template}: \altverb{RAOT7z3RA0XYlHIikne8rfUUYZrtHyrzXBD1HpI_GvcRk}
+    \begin{task}
+       Use this template to register a workflow. Possibly \emph{your} workflow? Else the tutorial workflow.\\
+       To register a workflow, it needs to be registered with a DOI (or a nanopub itself):
+       \begin{itemize}
+           \item On Zenodo you can create a DOI via GitHub, e.g. \lhref{https://doi.org/10.5281/zenodo.17087101}{this one}.
+           \item Alternatively, \lhref{https://workflowhub.eu/search?q=Snakemake\#workflows}{WorkflowHub} has a few registered workflows -- we will work to extend this.
+           \item Or you use \lhref{https://doi.org/10.14279/eceasst.v83.2600}{the DOI for a tutorial workflow}  registered with the HPC teaching alliance for \Snakemake.
+       \end{itemize}
+    \end{task}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{What if a workflow is registered multiple times?}
+    \begin{docs}
+        The Nanopublications framework does not prevent this. It is not desirable, but cannot be avoided.
+        \begin{itemize}[<+->]
+            \item You can retract accidentally created nanopubs (or those with a glitch).
+            \item Search before registering \lhref{https://nanodash.knowledgepixels.com/query?id=RApMWbZ0ixGj88tPB4cEamKJQuQTZ5Dxpjh1a5BWteTdE/SnakemakeWorkflowRegistrations}{using this query}. 
+        \end{itemize}
+    \end{docs}
+    \pause
+    \begin{hint}
+        We will retract unnecessarily created nanopubs, e.g. from the example DOIs.
+    \end{hint}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+    \frametitle{\HandsOn{Using the plugin to create your Nanopub report}}
+    First we need to install it into a working \Snakemake environment:
+    \begin{lstlisting}[language=Bash, style=Shell]
+$ # pip or mamba
+$ pip install snakemake-report-plugin-nanopub
+    \end{lstlisting}
+    Then take your just created nanopub to register your workflow:
+    \begin{lstlisting}[language=Bash, style=Shell]
+$ snakemake ... --reporter nanopub \
+> --report-nanopub-workflow-id <nanopub workflow id>
+    \end{lstlisting}
+    \begin{warning}
+        This may trigger a workflow to run!
+    \end{warning}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+    \frametitle{\HandsOn{Browsing the report}}
+    Browse your own nanopub report or \lhref{https://w3id.org/np/RAK9xz_ccnu0Xhs4vX2KtqCxX44mmSt6nq-ePLeewMrFE}{this one}
+    \begin{hint}
+        Basically you can use this to simplify a materials \& methods section of a paper like this:\\
+        
+        
+    \end{hint}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{An example knowledge graph}
+    To visualize the result we can use the plugin to create a graph like this:
+    \begin{centering}
+    \includegraphics[width=0.9\textwidth]{reports/example_knowledgegraph.png}
+    \end{centering}
+    \begin{hint}
+        It will contain the descriptions the workflow designer (you?) entered into the workflow, the dataset, etc..
+    \end{hint}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+    \frametitle{Creating this knowledge graph}
+    The nanopub reporter plugin for \Snakemake has a script on board:
+    \begin{lstlisting}[language=Bash, style=Shell]
+$ plot-nanopub-knowledge-graph \
+> --dataset-nanopub-id <dataset_id> \
+> --workflow-nanopub-id <id of registered workflow> \
+> --workflow-configuration-id <id of registered conf> \
+> --report-nanopub-id <id of registered report> \ 
+> -o example_knowledgegraph.png
+    \end{lstlisting}
+    \begin{hint}
+        \begin{itemize}
+            \item file type determined by suffix (\altverb{png}, \altverb{pdf}, \altverb{svg})
+            \item all flags are mandatory
+        \end{itemize}
+    \end{hint}
+\end{frame}

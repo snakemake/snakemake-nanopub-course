@@ -1,0 +1,63 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Snakemake  Reports}
+{   
+    \usebackgroundtemplate{
+        \vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=\paperwidth]{reports/snakemake_html_workflow_report.png}\hfil}\vfil}
+    }
+    \frame{
+        \frametitle{\Snakemake Reports}
+        \begin{mdframed}[tikzsetting={draw=white,fill=white,fill opacity=0.8,
+                line width=0pt},backgroundcolor=none,leftmargin=0,
+            rightmargin=150,innertopmargin=4pt,roundcorner=10pt]
+            \tableofcontents[currentsection,sections={1-4},hideothersubsections]
+        \end{mdframed}
+        \vfill\vspace{16mm}\hfil \hfill{\tiny Screenshot --of a \Snakemake HTML report}
+    }
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{How does a \Snakemake Report look like?}
+    \begin{figure}[c]
+        \includegraphics[width=0.9\textwidth]{reports/snakemake_html_workflow_report.png}
+        \caption*{
+            \\ This is a HTML report of the workflow presented earlier. Designed for teaching. Download from \url{https://doi.org/10.5281/zenodo.18860872}. (The nanopub for it is \lhref{https://w3id.org/np/RApK8IUY9KJJkFoasvMJhPQQtT8VvN0IQ__hAxKOeeIuk}{\altverb{RApK8IUY9KJJkFoasvMJhPQQtT8VvN0IQ__hAxKOeeIuk}}.)\\
+            \Snakemake's HTML reports are designed to give all meta-information and publication-ready figures!
+        }
+    \end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \centering
+    {\Huge A DEMO of Reports}
+    \newline Here, we did a little demo of workflow reports.
+    \\
+    Participants were asked to download and browse the html report.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+	\frametitle{Snakemake Reports}
+	To create a html report
+	\begin{lstlisting}[language=Bash, style=Shell]
+snakemake ... --report
+    \end{lstlisting}
+    \begin{block}
+        This gives you a HTML report like the one we have seen (if the workflow is programmed to do so, else just a basic HTML report). To 
+    \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Steps needed to register Workflow MetaData}
+    To create a nanopub report:
+    \begin{itemize}[<+->]
+        \item First install the plugin (next).
+        \item Register with the Nanopub framework (next).
+        \item Register your workflow with Nanopubs using the \Snakemake nanopub reporter plugin, \textit{because only then a full connection between workflow and report can be made} (our hands on part - the end).
+        \item Learn how to create a knowledge graph including the \textbf{workflow}, its \textbf{configuration}, the \textbf{dataset} you have been working with, and the final \textbf{report} (our hands on part - the very end) 
+    \end{itemize}
+\end{frame}
+

@@ -20,13 +20,13 @@ layout:
   beamercolor_block_title_example: "fg=white,bg=PineGreen!80"
 
 course:
-  date: "\today" # maybe: "\today"
+  date: "9. June 2026" # maybe: "\today"
   #title: "" # specifiy your title here, else a default is used. 
   #subtitle: "" # specifiy your subtitle here, else a default is used. 
   # Editors recommendations are a matter of taste and technological
   # setups (e.g. on-demand setups). Hence, specify an editor-slide,
   #  here:
-  editorfile: "common/editor_gedit_mainz.tex"dd
+  editorfile: "common/editor_gedit_mainz.tex"
   # The next line indicates the slides explaining
   # a condarc file on a cluster, copy and adjust
   # for your cluster.
