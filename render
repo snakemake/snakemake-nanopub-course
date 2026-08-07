@@ -160,27 +160,30 @@ def find_and_replace_sections(boundaries, section_estimate, fname):
         return
 
     # get the matching 'currentsection' lines
-    first_done, second_done, minitocline = False, False, False
+    first_done, second_done, minitocline = None, None, None
     for lcount, line in enumerate(lines):
-        if not first_done:
+        if first_done is None:
             if "currentsection" in line and not "hideothersubsections" in line:
                 first_done = lcount
                 break
             if "hideothersubsections" in line:
                 minitocline = lcount
                 break
-    if not minitocline:  # we need to count the line for the 2nd toc column
+    if minitocline is None and first_done is not None:
+        # we need to count the line for the 2nd toc column
         for lcount, line in enumerate(lines[first_done + 1 :]):
-            if not second_done:
+            if second_done is None:
                 if "currentsection" in line:
                     second_done = lcount + first_done + 1
                     break
 
-    if not minitocline and not (first_done and second_done):
+    if minitocline is None and (
+        first_done is None or second_done is None
+    ):
         logger.debug("no outline found for %s -> skipping" % fname)
         return
     # first render minitoc
-    if minitocline:
+    if minitocline is not None:
         lower = max((section_estimate - 2), 1)  # lower boundary not lower than 1
         upper = section_estimate + 2
         upper = (
@@ -194,7 +197,7 @@ def find_and_replace_sections(boundaries, section_estimate, fname):
         )
         # check:
     # adapt the two lines with our new boundaries:
-    elif first_done and second_done:
+    elif first_done is not None and second_done is not None:
         lines[
             first_done
         ] = "            \\tableofcontents[sections={%d-%d},currentsection]\n" % (
@@ -329,7 +332,7 @@ if __name__ == "__main__":
             ]
             opj = os.path.join
 
-            if args.sample_directory == "_": # will skip producing a zip file
+            if args.sample_directory in (None, "_"):  # skip zip when unset
                 sys.exit(0)
 
             for root, dirs, files in os.walk(args.sample_directory):
