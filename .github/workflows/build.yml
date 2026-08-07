@@ -31,7 +31,7 @@ jobs:
 
       - name: LaTeX compile  
         run: |
-          ./render --master-tex Snakemake_Software_Provenance_Nanopub.tex --configfile config/config.yaml
+          ./render --master-tex Snakemake_Software_Provenance_Nanopub.tex --config config/config.yaml
       
 
       - name: Upload .pdf File
