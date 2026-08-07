@@ -51,7 +51,7 @@ jobs:
 
       - name: Build Slides PDFs
         run: |
-          ./render --master-tex Snakemake_Software_Provenance_Nanopub.tex --config config/config.yml --handout
+          ./render --master-tex Snakemake_Software_Provenance_Nanopub.tex --config config/config.yaml --handout
 
       - name: Zip solutions and tutorial folders
         run: |
