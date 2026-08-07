@@ -35,5 +35,5 @@ jobs:
 
             See {{ changelog }} for details. Here is the header of the changelog:
             
-            ${{ steps.extract-release-notes.outputs.release_notes }}
+            
             
