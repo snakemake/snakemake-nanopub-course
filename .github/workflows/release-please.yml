@@ -53,12 +53,6 @@ jobs:
         run: |
           ./render --master-tex Snakemake_Software_Provenance_Nanopub.tex --configfile config/config.yml --handout
 
-      - name: Build Certificates PDF
-        run: |
-          cd certificates
-          ./certificate_generator --exportfile participant_test.csv --textemplate template_english.tex --config config.yaml
-          cd ..
-
       - name: Zip solutions and tutorial folders
         run: |
           cd setup_creators
@@ -82,6 +76,5 @@ jobs:
           fail_on_unmatched_files: false
           files: |
             slides/*.pdf
-            certificates/all_participants_certifications.pdf
             setup_creators_material.zip
             snakemake-nanopub-course-material_${{ needs.release-please.outputs.tag_name }}_source_with_pdfs.zip
