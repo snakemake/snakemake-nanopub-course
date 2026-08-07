@@ -42,7 +42,7 @@ def edition_from_tag():
     sets the edition from the latests tag
     this assumes that the tag is the set per release
     """
-    cmd = "git tag -l | tail -1"
+    cmd = "git describe --tags --abbrev=0"
     return subprocess.getoutput(cmd)
 
 
