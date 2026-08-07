@@ -15,7 +15,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Install Dependencies
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends 
-             python3-yaml 
+             python3-yaml
+             python3-jinja2
              texlive 
              texlive-fonts-extra 
              texlive-latex-extra 
