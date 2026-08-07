@@ -81,33 +81,6 @@ if __name__ == "__main__":
         description="Certificate Generator for the Snakemake Software Provenance with Nanopub Workshop"
     )
     parser.add_argument(
-        "--exportfile",
-        dest="exportfile",
-        nargs="?",
-        type=argparse.FileType("r"),
-        default=sys.stdin,
-        help="Specifies partipant csv export file (input file name)",
-    )
-    parser.add_argument(
-        "--textemplate",
-        dest="templatefile",
-        nargs="?",
-        type=str,
-        default="template_english.tex",
-        help="Specifies the tex template",
-    )
-    parser.add_argument("--date", dest="date", help="Desired date")
-    parser.add_argument(
-        "--header",
-        dest="has_header",
-        help="Indicate presence of header line in participant export file",
-        action="store_true",
-    )
-    parser.add_argument("--sign-date", dest="sign_date", help="")
-    parser.add_argument(
-        "--select-name", dest="only_name", help="only generate for matching name"
-    )
-    parser.add_argument(
         "--name-index",
         dest="nindex",
         type=int,
@@ -122,11 +95,48 @@ if __name__ == "__main__":
         help="defines surname index in export files",
     )
     parser.add_argument(
+        "--header",
+        dest="has_header",
+        help="Indicate presence of header line in participant export file",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--select-name", dest="only_name", help="only generate for matching name"
+    )
+
+    requiredNamed = parser.add_argument_group("required named arguments")
+    requiredNamed.add_argument(
         "--config",
         dest="configfile",
         nargs="?",
         type=str,
         help="configuration file in YAML format",
+        required=True,
+    )
+
+    requiredNamed.add_argument(
+        "--exportfile",
+        dest="exportfile",
+        nargs="?",
+        type=argparse.FileType("r"),
+        default=sys.stdin,
+        help="Specifies partipant csv export file (input file name)",
+        required=True,
+    )
+    requiredNamed.add_argument(
+        "--textemplate",
+        dest="templatefile",
+        nargs="?",
+        type=str,
+        default="template_english.tex",
+        help="Specifies the tex template",
+        required=True,
+    )
+    requiredNamed.add_argument(
+        "--date", dest="date", help="Desired date", required=True
+    )
+    requiredNamed.add_argument(
+        "--sign-date", dest="sign_date", help="Date of signing", required=True
     )
 
     args = parser.parse_args()
