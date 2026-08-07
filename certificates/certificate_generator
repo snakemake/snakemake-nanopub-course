@@ -153,20 +153,15 @@ if __name__ == "__main__":
 
     # add the path to the measurements
     data["PATH"] = PATH
-    if not "date" in data:
-        try:
-            data["date"] = args.date
-        except:
-            raise AssertionError(
-                "Unable to find 'date' in the configfile, please indicate as '--date' on the command line"
-            )
-    if not "sign_date" in data:
-        try:
-            data["sign_date"] = args.sign_date
-        except:
-            raise AssertionError(
-                "Unable to find 'sign_date' in the configfile, please indicate as '--sign-date' on the command line"
-            )
+    course = data.setdefault("course", {})
+    if not course.get("date"):
+        if not args.date:
+            parser.error("Set course.date in --config or pass --date.")
+        course["date"] = args.date
+    if not course.get("sign_date"):
+        if not args.sign_date:
+            parser.error("Set course.sign_date in --config or pass --sign-date.")
+        course["sign_date"] = args.sign_date
     for member in participants:
         data["member"] = {"name": member["name"], "surname": member["surname"]}
         tex = render_people(data, args.templatefile)
