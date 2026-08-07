@@ -73,7 +73,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ needs.release-please.outputs.tag_name }}
-          fail_on_unmatched_files: false
+          fail_on_unmatched_files: true
           files: |
             slides/*.pdf
             setup_creators_material.zip

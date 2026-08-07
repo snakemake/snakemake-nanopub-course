@@ -45,7 +45,7 @@ def to_file(tex, fname="out.tex", path="."):
 
 
 def run_pdflatex(fname="out.tex", path="."):
-    return subprocess.call(["pdflatex", fname], cwd=path)
+    return subprocess.run(["pdflatex", "-halt-on-error", fname], cwd=path, check=True)
 
 
 def concatenate_pdfs():
@@ -53,7 +53,7 @@ def concatenate_pdfs():
     items = ["pdfunite", "all_participants_certifications.pdf"]
     items[1:1] = fnames
     print(items)
-    subprocess.call(items)
+    subprocess.run(items, check=True)
 
 
 def parse_participants(
