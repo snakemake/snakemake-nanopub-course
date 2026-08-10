@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/snakemake/snakemake-nanopub-course/compare/v1.0.0...v1.0.1) (2026-08-10)
+
+
+### Bug Fixes
+
+* no zipping for material - this is not part of the upload for now ([5a2848c](https://github.com/snakemake/snakemake-nanopub-course/commit/5a2848c168c042d17616b337e46b282aad6b743c))
+* no zipping for material - this is not part of the upload for now ([b1761e5](https://github.com/snakemake/snakemake-nanopub-course/commit/b1761e53faab60de65b52211abe45baacd643008))
+
 ## 1.0.0 (2026-08-07)
 
 
