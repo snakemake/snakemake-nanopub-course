@@ -53,12 +53,6 @@ jobs:
         run: |
           ./render --master-tex Snakemake_Software_Provenance_Nanopub.tex --config config/config.yaml --handout
 
-      - name: Zip solutions and tutorial folders
-        run: |
-          cd setup_creators
-          zip -r ../setup_creators_material.zip solutions tutorial
-          cd ..
-
       - name: Create source bundle with PDFs
         run: |
           bundle_name="snakemake-nanopub-course-material_${{ needs.release-please.outputs.tag_name }}_source_with_pdfs.zip"
